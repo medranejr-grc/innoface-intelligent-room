@@ -7,14 +7,13 @@
   <style>
     :root {
       --accent: #1F4E79;
-      --ink: #17202a;
-      --muted: #5e6a75;
+      --accent-dark: #173b5c;
+      --accent-soft: #edf4fa;
+      --ink: #18212b;
+      --muted: #5c6875;
+      --line: #d8e1ea;
       --paper: #ffffff;
-      --wash: #f4f8fb;
-      --line: #d8e2ea;
-      --note: #fff3c4;
-      --note-line: #c2931f;
-      --max: 920px;
+      --wash: #f6f8fb;
     }
 
     * {
@@ -22,254 +21,326 @@
     }
 
     html {
-      background: #eef3f7;
-      color: var(--ink);
-      font-family: Georgia, "Times New Roman", serif;
-      line-height: 1.62;
+      scroll-behavior: smooth;
     }
 
     body {
       margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(180deg, #eef3f8 0, #ffffff 440px),
+        var(--paper);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 18px;
+      line-height: 1.65;
     }
 
     .page {
-      background: var(--paper);
-      box-shadow: 0 24px 80px rgba(12, 39, 62, 0.16);
+      width: min(100%, 1180px);
       margin: 0 auto;
-      min-height: 100vh;
-      overflow: hidden;
+      padding: 0 28px 80px;
     }
 
     .hero {
-      background:
-        linear-gradient(135deg, rgba(31, 78, 121, 0.97), rgba(22, 52, 80, 0.94)),
-        radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.2), transparent 32%);
-      color: #fff;
-      padding: 72px 24px 64px;
-      text-align: center;
+      position: relative;
+      min-height: 440px;
+      display: grid;
+      align-items: end;
+      padding: 82px 0 58px;
+      border-bottom: 1px solid var(--line);
     }
 
-    .hero-inner {
-      margin: 0 auto;
-      max-width: var(--max);
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 36px 0 auto auto;
+      width: min(42vw, 520px);
+      height: 240px;
+      background:
+        linear-gradient(90deg, transparent 0 19px, rgba(31, 78, 121, .18) 20px 21px, transparent 22px),
+        linear-gradient(0deg, transparent 0 19px, rgba(31, 78, 121, .14) 20px 21px, transparent 22px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(90deg, transparent, #000 32%, #000 76%, transparent);
+      opacity: .85;
+      pointer-events: none;
     }
 
     .brand {
+      position: relative;
+      z-index: 1;
+      color: var(--accent);
       font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.78rem;
+      font-size: .78rem;
       font-weight: 700;
-      letter-spacing: 0.16em;
-      margin: 0 0 18px;
+      letter-spacing: .18em;
+      text-align: center;
       text-transform: uppercase;
+      margin: 0 0 26px;
     }
 
     h1,
     h2,
     h3 {
-      line-height: 1.15;
+      position: relative;
+      z-index: 1;
       margin: 0;
-    }
-
-    h1 {
-      font-size: clamp(3rem, 7vw, 5.7rem);
+      color: var(--ink);
+      line-height: 1.12;
+      font-family: Georgia, "Times New Roman", serif;
       font-weight: 700;
       letter-spacing: 0;
     }
 
+    h1 {
+      color: var(--accent-dark);
+      text-align: center;
+      font-size: clamp(3.6rem, 10vw, 7.5rem);
+      line-height: .94;
+      margin: 0 auto 24px;
+      max-width: 940px;
+    }
+
     .subtitle {
-      font-size: clamp(1.08rem, 2.2vw, 1.45rem);
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
+      margin: 0 auto;
+      color: var(--accent-dark);
+      text-align: center;
+      font-size: clamp(1.12rem, 2.3vw, 1.6rem);
       font-style: italic;
-      margin: 20px auto 0;
-      max-width: 760px;
+      line-height: 1.45;
     }
 
     main {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 38px;
+      max-width: 900px;
       margin: 0 auto;
-      max-width: var(--max);
-      padding: 52px 24px 72px;
+      padding-top: 46px;
     }
 
-    .lede {
-      border-bottom: 1px solid var(--line);
-      color: #24313d;
-      font-size: 1.18rem;
-      margin: 0 0 48px;
-      padding-bottom: 34px;
+    section {
+      padding-top: 10px;
     }
 
     h2 {
       color: var(--accent);
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: clamp(1.75rem, 3vw, 2.35rem);
-      letter-spacing: 0;
-      margin-top: 48px;
+      font-size: clamp(1.9rem, 4vw, 2.7rem);
+      margin: 0 0 20px;
+      padding-top: 18px;
     }
 
     h3 {
-      color: #20374b;
+      color: var(--accent-dark);
       font-family: Arial, Helvetica, sans-serif;
-      font-size: clamp(1.22rem, 2.2vw, 1.56rem);
-      letter-spacing: 0;
-      margin-top: 34px;
+      font-size: 1rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin: 30px 0 12px;
     }
 
     p {
-      font-size: 1.06rem;
-      margin: 16px 0 0;
+      margin: 0 0 18px;
+    }
+
+    .lede {
+      color: #26394c;
+      font-size: 1.08rem;
+      border-left: 5px solid var(--accent);
+      padding: 20px 0 20px 24px;
+      margin-bottom: 8px;
+      background: linear-gradient(90deg, rgba(31, 78, 121, .08), transparent 68%);
+    }
+
+    .pending-note {
+      display: inline;
+      padding: .12em .35em .16em;
+      border: 1px solid #b77d12;
+      border-radius: 4px;
+      background: #fff4d7;
+      color: #603d00;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: .88em;
+      font-weight: 700;
+      white-space: normal;
     }
 
     ul,
     ol {
-      margin: 16px 0 0;
+      margin: 14px 0 0;
       padding-left: 1.35rem;
     }
 
     li {
-      font-size: 1.06rem;
       margin: 8px 0;
-      padding-left: 0.15rem;
+    }
+
+    .category-list {
+      margin-bottom: 8px;
     }
 
     .pull-quote {
-      background: var(--wash);
-      border-left: 6px solid var(--accent);
-      color: var(--accent);
-      font-size: clamp(1.22rem, 2.5vw, 1.55rem);
+      margin: 38px 0;
+      padding: 28px 32px;
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+      border-left: 7px solid var(--accent);
+      font-size: clamp(1.25rem, 2.8vw, 1.65rem);
       font-style: italic;
       line-height: 1.45;
-      margin: 36px 0;
-      padding: 24px 28px;
     }
 
     .table-wrap {
-      margin: 24px 0 28px;
+      margin: 26px 0 24px;
       overflow-x: auto;
-      padding-bottom: 4px;
-      -webkit-overflow-scrolling: touch;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 18px 44px rgba(31, 78, 121, .08);
     }
 
     table {
-      border-collapse: collapse;
-      min-width: 720px;
       width: 100%;
+      min-width: 720px;
+      border-collapse: collapse;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: .95rem;
+      line-height: 1.45;
+    }
+
+    thead {
+      background: var(--accent);
+      color: #fff;
     }
 
     th,
     td {
-      border: 1px solid var(--line);
-      padding: 16px 18px;
+      padding: 18px 20px;
       text-align: left;
       vertical-align: top;
+      border-bottom: 1px solid var(--line);
     }
 
     th {
-      background: var(--accent);
-      color: #fff;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.9rem;
-      letter-spacing: 0;
-    }
-
-    td {
-      font-size: 1rem;
-    }
-
-    tbody tr:nth-child(even) td {
-      background: #f8fbfd;
-    }
-
-    .decision-note {
-      background: var(--note);
-      border: 1px solid var(--note-line);
-      border-radius: 4px;
-      box-decoration-break: clone;
-      -webkit-box-decoration-break: clone;
-      color: #3c2a00;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.92em;
       font-weight: 700;
-      padding: 0.12em 0.36em;
+      letter-spacing: .02em;
+    }
+
+    tbody tr:nth-child(even) {
+      background: var(--wash);
+    }
+
+    tbody tr:last-child td {
+      border-bottom: 0;
     }
 
     .steps {
       counter-reset: step;
       list-style: none;
-      padding-left: 0;
+      padding: 0;
+      margin: 20px 0 0;
+      display: grid;
+      gap: 18px;
     }
 
     .steps li {
-      border-top: 1px solid var(--line);
+      counter-increment: step;
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr);
+      gap: 18px;
       margin: 0;
-      padding: 18px 0 16px 54px;
-      position: relative;
+      padding: 22px 0;
+      border-top: 1px solid var(--line);
     }
 
     .steps li::before {
-      align-items: center;
+      content: counter(step);
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      color: #fff;
       background: var(--accent);
       border-radius: 50%;
-      color: #fff;
-      content: counter(step);
-      counter-increment: step;
-      display: flex;
       font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.95rem;
       font-weight: 700;
-      height: 34px;
-      justify-content: center;
-      left: 0;
-      position: absolute;
-      top: 19px;
-      width: 34px;
     }
 
-    .steps strong {
-      color: #20374b;
+    .step-title {
       display: block;
+      color: var(--accent-dark);
       font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.02rem;
+      font-weight: 700;
       line-height: 1.3;
-      margin-bottom: 5px;
+      margin-bottom: 7px;
     }
 
-    .steps p {
+    .step-body {
       margin: 0;
     }
 
     .signature {
-      border-top: 3px solid var(--accent);
-      margin-top: 34px;
-      padding-top: 22px;
+      margin-top: 36px;
+      padding-top: 26px;
+      border-top: 2px solid var(--accent);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.45;
     }
 
     .signature strong {
-      font-family: Arial, Helvetica, sans-serif;
+      color: var(--accent-dark);
+      display: block;
+      font-size: 1.05rem;
     }
 
-    @media (max-width: 680px) {
+    @media (max-width: 640px) {
+      body {
+        font-size: 16px;
+        line-height: 1.62;
+      }
+
+      .page {
+        padding: 0 18px 52px;
+      }
+
       .hero {
-        padding: 54px 20px 46px;
+        min-height: 360px;
+        padding: 58px 0 42px;
+      }
+
+      .hero::before {
+        inset: 30px -18px auto auto;
+        width: 78vw;
+        height: 180px;
+        opacity: .5;
+      }
+
+      .brand {
+        font-size: .7rem;
       }
 
       main {
-        padding: 38px 18px 56px;
+        gap: 28px;
+        padding-top: 34px;
       }
 
       .lede {
-        font-size: 1.08rem;
-        margin-bottom: 36px;
-      }
-
-      h2 {
-        margin-top: 40px;
+        padding-left: 16px;
       }
 
       .pull-quote {
+        padding: 22px 20px;
         margin: 30px 0;
-        padding: 20px;
       }
 
       .table-wrap {
         overflow: visible;
+        border: 0;
+        box-shadow: none;
+        background: transparent;
       }
 
       table,
@@ -279,29 +350,37 @@
       th,
       td {
         display: block;
-        min-width: 0;
-        width: 100%;
-      }
-
-      thead {
-        display: none;
       }
 
       table {
-        border-collapse: separate;
-        border-spacing: 0 14px;
+        min-width: 0;
+        font-size: .92rem;
+      }
+
+      thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
       }
 
       tr {
+        margin: 0 0 16px;
         border: 1px solid var(--line);
         border-radius: 8px;
+        background: #fff;
+        box-shadow: 0 10px 28px rgba(31, 78, 121, .08);
         overflow: hidden;
       }
 
+      tbody tr:nth-child(even) {
+        background: #fff;
+      }
+
       td {
-        border: 0;
         border-bottom: 1px solid var(--line);
-        padding: 13px 15px;
+        padding: 14px 16px 16px;
       }
 
       td:last-child {
@@ -309,50 +388,70 @@
       }
 
       td::before {
-        color: var(--accent);
         content: attr(data-label);
         display: block;
+        color: var(--accent);
         font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.78rem;
+        font-size: .74rem;
         font-weight: 700;
-        margin-bottom: 3px;
+        letter-spacing: .08em;
+        margin-bottom: 5px;
         text-transform: uppercase;
       }
 
       .steps li {
-        padding-left: 46px;
+        grid-template-columns: 40px minmax(0, 1fr);
+        gap: 14px;
+      }
+
+      .steps li::before {
+        width: 40px;
+        height: 40px;
       }
     }
 
     @media print {
-      html,
-      body,
-      .page {
+      body {
         background: #fff;
-        box-shadow: none;
+        color: #000;
+        font-size: 12pt;
+      }
+
+      .page {
+        width: auto;
+        padding: 0;
       }
 
       .hero {
-        background: #fff;
-        border-bottom: 3px solid var(--accent);
-        color: var(--ink);
-        padding: 28px 0 24px;
+        min-height: 0;
+        padding: 0 0 28px;
       }
 
-      main {
-        max-width: none;
-        padding: 24px 0 0;
+      .hero::before {
+        display: none;
+      }
+
+      h1 {
+        font-size: 42pt;
+      }
+
+      h2 {
+        break-after: avoid;
       }
 
       .pull-quote,
-      .decision-note {
-        print-color-adjust: exact;
-        -webkit-print-color-adjust: exact;
+      .lede,
+      .table-wrap,
+      .steps li {
+        break-inside: avoid;
       }
 
-      a {
-        color: inherit;
-        text-decoration: none;
+      .table-wrap {
+        box-shadow: none;
+      }
+
+      table {
+        min-width: 0;
       }
     }
   </style>
@@ -360,7 +459,7 @@
 <body>
   <div class="page">
     <header class="hero">
-      <div class="hero-inner">
+      <div>
         <p class="brand">INNOFACE SYSTEMS</p>
         <h1>The Intelligent Room</h1>
         <p class="subtitle">How AI Is Reshaping AV Integration in 2026, and What Atlanta Organizations Need to Know Now</p>
@@ -368,22 +467,24 @@
     </header>
 
     <main>
-      <p class="lede">Written by Innoface Systems, a 20-year AV integration firm with government and institutional credentials spanning DOD, NASA, NIH, and GSA <span class="decision-note">[CONFIRM WITH IVAN: keep or cut "Joint Base Andrews"]</span>, now bringing that experience to Atlanta's fastest-growing organizations.</p>
+      <section aria-labelledby="intro">
+        <p id="intro" class="lede">Written by Innoface Systems, a 20-year AV integration firm with government and institutional credentials spanning DOD, NASA, NIH, and GSA <span class="pending-note">[CONFIRM WITH IVAN: keep or cut “Joint Base Andrews”]</span>, now bringing that experience to Atlanta's fastest-growing organizations.</p>
+      </section>
 
-      <section>
-        <h2>Why 2026 Is the Actual Inflection Point</h2>
+      <section aria-labelledby="inflection">
+        <h2 id="inflection">Why 2026 Is the Actual Inflection Point</h2>
         <p>Every year, someone claims AI has arrived in the built environment. 2026 is different, and the difference is not hype. It's the hardware bill of materials.</p>
         <p>For the first time, the major room-system manufacturers are shipping AI as a default feature, not an add-on module purchased later. Speaker tracking, automatic framing, noise cancellation, and live transcription are now baked into the systems being specified and installed today. Organizations replacing conference room technology on a normal refresh cycle are getting AI capability whether they asked for it or planned for it.</p>
         <p>That creates a gap. The organizations replacing rooms this year are making AI governance decisions by default, often without realizing it. The ones who understand what's actually happening in their hardware, and what it means for their data, their compliance posture, and their people, are the ones making that decision deliberately instead of by accident.</p>
       </section>
 
-      <section>
-        <h2>The Three Categories of AI in AV</h2>
+      <section aria-labelledby="categories">
+        <h2 id="categories">The Three Categories of AI in AV</h2>
         <p>Not every AI feature carries the same weight. Innoface sorts every AI capability shipping today into one of three categories. This framework is the single most useful lens for any organization deciding what to turn on, and when.</p>
 
         <h3>Category 1 — Deploy Now</h3>
         <p>Hardware-level AI that improves the meeting experience without touching sensitive data in a new way. Low risk, immediate value.</p>
-        <ul>
+        <ul class="category-list">
           <li>Automatic speaker framing and camera tracking</li>
           <li>AI-driven noise and echo cancellation</li>
           <li>Adaptive audio leveling across a room</li>
@@ -391,7 +492,7 @@
 
         <h3>Category 2 — Deploy With Policy</h3>
         <p>Features that create real value but generate a data artifact that didn't exist before: a transcript, a summary, a recording. These require a deliberate decision, not a default setting.</p>
-        <ul>
+        <ul class="category-list">
           <li>Automatic meeting transcription and AI-generated summaries</li>
           <li>Voice-based attendee identification</li>
           <li>Cloud-synced meeting intelligence platforms (Teams, Zoom, Google Meet AI layers)</li>
@@ -399,7 +500,7 @@
 
         <h3>Category 3 — Watch</h3>
         <p>Emerging capability where the technology is ahead of the governance frameworks around it. Not wrong to explore. Wrong to deploy without a specific plan.</p>
-        <ul>
+        <ul class="category-list">
           <li>Sentiment and engagement analysis during live meetings</li>
           <li>Predictive room-usage and behavioral analytics</li>
           <li>Third-party AI plugins layered onto existing room systems</li>
@@ -408,15 +509,15 @@
         <blockquote class="pull-quote">“The AV hardware doesn't know the difference between a routine staff meeting and a privileged legal conversation. It records everything the same way. That is the conversation most integrators aren't having with their clients yet.”</blockquote>
       </section>
 
-      <section>
-        <h2>The Compliance Reality by Environment</h2>
+      <section aria-labelledby="compliance">
+        <h2 id="compliance">The Compliance Reality by Environment</h2>
         <p>The same AI feature carries different weight depending on who is in the room. Innoface's government and institutional background shapes how we think about this: the hardware is identical across environments, but the exposure is not.</p>
         <div class="table-wrap">
           <table>
             <thead>
               <tr>
-                <th>Environment</th>
-                <th>What's Actually at Stake</th>
+                <th scope="col">Environment</th>
+                <th scope="col">What's Actually at Stake</th>
               </tr>
             </thead>
             <tbody>
@@ -448,16 +549,16 @@
         <blockquote class="pull-quote">The question every organization should be asking is not “should we use AI in our conference rooms”: that decision has already been made by the manufacturer. The question is which category each feature falls into, and who signed off on that.</blockquote>
       </section>
 
-      <section>
-        <h2>Total Cost of Ownership, Including AI Licensing</h2>
+      <section aria-labelledby="cost">
+        <h2 id="cost">Total Cost of Ownership, Including AI Licensing</h2>
         <p>One of the most common surprises organizations encounter is discovering that the AI features shipping on new room hardware often require a separate, ongoing software license to activate or sustain, beyond the one-time hardware purchase.</p>
         <div class="table-wrap">
           <table>
             <thead>
               <tr>
-                <th>Cost Category</th>
-                <th>Timing</th>
-                <th>What It Covers</th>
+                <th scope="col">Cost Category</th>
+                <th scope="col">Timing</th>
+                <th scope="col">What It Covers</th>
               </tr>
             </thead>
             <tbody>
@@ -487,28 +588,38 @@
         <p>Budgeting for the hardware alone and being surprised by the licensing line item a year later is the single most common AI-in-AV planning mistake we see. A responsible integrator prices the full picture up front.</p>
       </section>
 
-      <section>
-        <h2>Five Steps to Take Right Now</h2>
+      <section aria-labelledby="steps">
+        <h2 id="steps">Five Steps to Take Right Now</h2>
         <ol class="steps">
           <li>
-            <strong>Audit what's already active</strong>
-            <p>Most organizations don't know which AI features are already running in their current room systems. This is a thirty-minute conversation, not a project.</p>
+            <div>
+              <strong class="step-title">Audit what's already active</strong>
+              <p class="step-body">Most organizations don't know which AI features are already running in their current room systems. This is a thirty-minute conversation, not a project.</p>
+            </div>
           </li>
           <li>
-            <strong>Categorize by the three-tier framework</strong>
-            <p>Sort what you find into Deploy Now, Deploy With Policy, and Watch. This alone resolves most of the ambiguity.</p>
+            <div>
+              <strong class="step-title">Categorize by the three-tier framework</strong>
+              <p class="step-body">Sort what you find into Deploy Now, Deploy With Policy, and Watch. This alone resolves most of the ambiguity.</p>
+            </div>
           </li>
           <li>
-            <strong>Assign ownership</strong>
-            <p>Someone in IT, legal, or facilities should own the AI-in-AV decision. Right now, in most organizations, no one does.</p>
+            <div>
+              <strong class="step-title">Assign ownership</strong>
+              <p class="step-body">Someone in IT, legal, or facilities should own the AI-in-AV decision. Right now, in most organizations, no one does.</p>
+            </div>
           </li>
           <li>
-            <strong>Build the policy before the next refresh</strong>
-            <p>If a room refresh is coming in the next 12–18 months, decide the governance posture before the new hardware arrives, not after.</p>
+            <div>
+              <strong class="step-title">Build the policy before the next refresh</strong>
+              <p class="step-body">If a room refresh is coming in the next 12–18 months, decide the governance posture before the new hardware arrives, not after.</p>
+            </div>
           </li>
           <li>
-            <strong>Choose an integrator who leads with this conversation</strong>
-            <p>Not every AV integrator is having this conversation with clients yet. The ones who are will save you from decisions you'd otherwise have to unwind later.</p>
+            <div>
+              <strong class="step-title">Choose an integrator who leads with this conversation</strong>
+              <p class="step-body">Not every AV integrator is having this conversation with clients yet. The ones who are will save you from decisions you'd otherwise have to unwind later.</p>
+            </div>
           </li>
         </ol>
       </section>
@@ -516,7 +627,7 @@
       <section>
         <p>Innoface Systems has spent two decades integrating AV systems for organizations where the stakes of getting it right are non-negotiable: government facilities, federal agencies, and institutions operating under real compliance obligations. That background is exactly why we lead with this conversation instead of leading with a product list.</p>
         <p>If you'd like to talk through what this means specifically for your environment , whether that's a government facility, university campus, corporate headquarters, healthcare space, or house of worship, reach out directly.</p>
-        <p class="signature"><strong>Ivan Collins</strong><br>President, Innoface Systems</p>
+        <p class="signature"><strong>Ivan Collins</strong>President, Innoface Systems</p>
       </section>
     </main>
   </div>
