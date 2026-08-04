@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Intelligent Room | Innoface Systems</title>
+  <style>
+    :root {
+      --accent: #1F4E79;
+      --ink: #17202a;
+      --muted: #5e6a75;
+      --paper: #ffffff;
+      --wash: #f4f8fb;
+      --line: #d8e2ea;
+      --note: #fff3c4;
+      --note-line: #c2931f;
+      --max: 920px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: #eef3f7;
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.62;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    .page {
+      background: var(--paper);
+      box-shadow: 0 24px 80px rgba(12, 39, 62, 0.16);
+      margin: 0 auto;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .hero {
+      background:
+        linear-gradient(135deg, rgba(31, 78, 121, 0.97), rgba(22, 52, 80, 0.94)),
+        radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.2), transparent 32%);
+      color: #fff;
+      padding: 72px 24px 64px;
+      text-align: center;
+    }
+
+    .hero-inner {
+      margin: 0 auto;
+      max-width: var(--max);
+    }
+
+    .brand {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      margin: 0 0 18px;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.15;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 7vw, 5.7rem);
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      font-size: clamp(1.08rem, 2.2vw, 1.45rem);
+      font-style: italic;
+      margin: 20px auto 0;
+      max-width: 760px;
+    }
+
+    main {
+      margin: 0 auto;
+      max-width: var(--max);
+      padding: 52px 24px 72px;
+    }
+
+    .lede {
+      border-bottom: 1px solid var(--line);
+      color: #24313d;
+      font-size: 1.18rem;
+      margin: 0 0 48px;
+      padding-bottom: 34px;
+    }
+
+    h2 {
+      color: var(--accent);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: clamp(1.75rem, 3vw, 2.35rem);
+      letter-spacing: 0;
+      margin-top: 48px;
+    }
+
+    h3 {
+      color: #20374b;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: clamp(1.22rem, 2.2vw, 1.56rem);
+      letter-spacing: 0;
+      margin-top: 34px;
+    }
+
+    p {
+      font-size: 1.06rem;
+      margin: 16px 0 0;
+    }
+
+    ul,
+    ol {
+      margin: 16px 0 0;
+      padding-left: 1.35rem;
+    }
+
+    li {
+      font-size: 1.06rem;
+      margin: 8px 0;
+      padding-left: 0.15rem;
+    }
+
+    .pull-quote {
+      background: var(--wash);
+      border-left: 6px solid var(--accent);
+      color: var(--accent);
+      font-size: clamp(1.22rem, 2.5vw, 1.55rem);
+      font-style: italic;
+      line-height: 1.45;
+      margin: 36px 0;
+      padding: 24px 28px;
+    }
+
+    .table-wrap {
+      margin: 24px 0 28px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+      border-collapse: collapse;
+      min-width: 720px;
+      width: 100%;
+    }
+
+    th,
+    td {
+      border: 1px solid var(--line);
+      padding: 16px 18px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--accent);
+      color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0;
+    }
+
+    td {
+      font-size: 1rem;
+    }
+
+    tbody tr:nth-child(even) td {
+      background: #f8fbfd;
+    }
+
+    .decision-note {
+      background: var(--note);
+      border: 1px solid var(--note-line);
+      border-radius: 4px;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+      color: #3c2a00;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.92em;
+      font-weight: 700;
+      padding: 0.12em 0.36em;
+    }
+
+    .steps {
+      counter-reset: step;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .steps li {
+      border-top: 1px solid var(--line);
+      margin: 0;
+      padding: 18px 0 16px 54px;
+      position: relative;
+    }
+
+    .steps li::before {
+      align-items: center;
+      background: var(--accent);
+      border-radius: 50%;
+      color: #fff;
+      content: counter(step);
+      counter-increment: step;
+      display: flex;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      height: 34px;
+      justify-content: center;
+      left: 0;
+      position: absolute;
+      top: 19px;
+      width: 34px;
+    }
+
+    .steps strong {
+      color: #20374b;
+      display: block;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.3;
+      margin-bottom: 5px;
+    }
+
+    .steps p {
+      margin: 0;
+    }
+
+    .signature {
+      border-top: 3px solid var(--accent);
+      margin-top: 34px;
+      padding-top: 22px;
+    }
+
+    .signature strong {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    @media (max-width: 680px) {
+      .hero {
+        padding: 54px 20px 46px;
+      }
+
+      main {
+        padding: 38px 18px 56px;
+      }
+
+      .lede {
+        font-size: 1.08rem;
+        margin-bottom: 36px;
+      }
+
+      h2 {
+        margin-top: 40px;
+      }
+
+      .pull-quote {
+        margin: 30px 0;
+        padding: 20px;
+      }
+
+      .table-wrap {
+        overflow: visible;
+      }
+
+      table,
+      thead,
+      tbody,
+      tr,
+      th,
+      td {
+        display: block;
+        min-width: 0;
+        width: 100%;
+      }
+
+      thead {
+        display: none;
+      }
+
+      table {
+        border-collapse: separate;
+        border-spacing: 0 14px;
+      }
+
+      tr {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      td {
+        border: 0;
+        border-bottom: 1px solid var(--line);
+        padding: 13px 15px;
+      }
+
+      td:last-child {
+        border-bottom: 0;
+      }
+
+      td::before {
+        color: var(--accent);
+        content: attr(data-label);
+        display: block;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 0.78rem;
+        font-weight: 700;
+        margin-bottom: 3px;
+        text-transform: uppercase;
+      }
+
+      .steps li {
+        padding-left: 46px;
+      }
+    }
+
+    @media print {
+      html,
+      body,
+      .page {
+        background: #fff;
+        box-shadow: none;
+      }
+
+      .hero {
+        background: #fff;
+        border-bottom: 3px solid var(--accent);
+        color: var(--ink);
+        padding: 28px 0 24px;
+      }
+
+      main {
+        max-width: none;
+        padding: 24px 0 0;
+      }
+
+      .pull-quote,
+      .decision-note {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="hero-inner">
+        <p class="brand">INNOFACE SYSTEMS</p>
+        <h1>The Intelligent Room</h1>
+        <p class="subtitle">How AI Is Reshaping AV Integration in 2026, and What Atlanta Organizations Need to Know Now</p>
+      </div>
+    </header>
+
+    <main>
+      <p class="lede">Written by Innoface Systems, a 20-year AV integration firm with government and institutional credentials spanning DOD, NASA, NIH, and GSA <span class="decision-note">[CONFIRM WITH IVAN: keep or cut "Joint Base Andrews"]</span>, now bringing that experience to Atlanta's fastest-growing organizations.</p>
+
+      <section>
+        <h2>Why 2026 Is the Actual Inflection Point</h2>
+        <p>Every year, someone claims AI has arrived in the built environment. 2026 is different, and the difference is not hype. It's the hardware bill of materials.</p>
+        <p>For the first time, the major room-system manufacturers are shipping AI as a default feature, not an add-on module purchased later. Speaker tracking, automatic framing, noise cancellation, and live transcription are now baked into the systems being specified and installed today. Organizations replacing conference room technology on a normal refresh cycle are getting AI capability whether they asked for it or planned for it.</p>
+        <p>That creates a gap. The organizations replacing rooms this year are making AI governance decisions by default, often without realizing it. The ones who understand what's actually happening in their hardware, and what it means for their data, their compliance posture, and their people, are the ones making that decision deliberately instead of by accident.</p>
+      </section>
+
+      <section>
+        <h2>The Three Categories of AI in AV</h2>
+        <p>Not every AI feature carries the same weight. Innoface sorts every AI capability shipping today into one of three categories. This framework is the single most useful lens for any organization deciding what to turn on, and when.</p>
+
+        <h3>Category 1 — Deploy Now</h3>
+        <p>Hardware-level AI that improves the meeting experience without touching sensitive data in a new way. Low risk, immediate value.</p>
+        <ul>
+          <li>Automatic speaker framing and camera tracking</li>
+          <li>AI-driven noise and echo cancellation</li>
+          <li>Adaptive audio leveling across a room</li>
+        </ul>
+
+        <h3>Category 2 — Deploy With Policy</h3>
+        <p>Features that create real value but generate a data artifact that didn't exist before: a transcript, a summary, a recording. These require a deliberate decision, not a default setting.</p>
+        <ul>
+          <li>Automatic meeting transcription and AI-generated summaries</li>
+          <li>Voice-based attendee identification</li>
+          <li>Cloud-synced meeting intelligence platforms (Teams, Zoom, Google Meet AI layers)</li>
+        </ul>
+
+        <h3>Category 3 — Watch</h3>
+        <p>Emerging capability where the technology is ahead of the governance frameworks around it. Not wrong to explore. Wrong to deploy without a specific plan.</p>
+        <ul>
+          <li>Sentiment and engagement analysis during live meetings</li>
+          <li>Predictive room-usage and behavioral analytics</li>
+          <li>Third-party AI plugins layered onto existing room systems</li>
+        </ul>
+
+        <blockquote class="pull-quote">“The AV hardware doesn't know the difference between a routine staff meeting and a privileged legal conversation. It records everything the same way. That is the conversation most integrators aren't having with their clients yet.”</blockquote>
+      </section>
+
+      <section>
+        <h2>The Compliance Reality by Environment</h2>
+        <p>The same AI feature carries different weight depending on who is in the room. Innoface's government and institutional background shapes how we think about this: the hardware is identical across environments, but the exposure is not.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Environment</th>
+                <th>What's Actually at Stake</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Environment">Government facilities</td>
+                <td data-label="What's Actually at Stake">FISMA and agency-specific data handling requirements apply to any recorded or transcribed content. Secure facilities may prohibit certain cloud-synced AI features entirely.</td>
+              </tr>
+              <tr>
+                <td data-label="Environment">Higher education</td>
+                <td data-label="What's Actually at Stake">FERPA protections extend to any meeting where student records or academic performance are discussed, including informal advising conversations captured by an always-listening room system.</td>
+              </tr>
+              <tr>
+                <td data-label="Environment">Healthcare</td>
+                <td data-label="What's Actually at Stake">HIPAA exposure exists wherever PHI could plausibly be discussed, including administrative and facilities meetings that occur near clinical areas.</td>
+              </tr>
+              <tr>
+                <td data-label="Environment">Corporate HQ</td>
+                <td data-label="What's Actually at Stake">Attorney-client privilege, HR confidentiality, and trade secret exposure are the primary risks, particularly in legal, executive, and HR conference rooms.</td>
+              </tr>
+              <tr>
+                <td data-label="Environment">Houses of worship</td>
+                <td data-label="What's Actually at Stake">Pastoral counseling and confidential congregational conversations carry an ethical expectation of privacy that most AV systems were never designed to respect.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>None of this is a reason to avoid AI-enabled AV systems. It's a reason to have the conversation before the system is installed, not after an incident makes it unavoidable.</p>
+
+        <blockquote class="pull-quote">The question every organization should be asking is not “should we use AI in our conference rooms”: that decision has already been made by the manufacturer. The question is which category each feature falls into, and who signed off on that.</blockquote>
+      </section>
+
+      <section>
+        <h2>Total Cost of Ownership, Including AI Licensing</h2>
+        <p>One of the most common surprises organizations encounter is discovering that the AI features shipping on new room hardware often require a separate, ongoing software license to activate or sustain, beyond the one-time hardware purchase.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Cost Category</th>
+                <th>Timing</th>
+                <th>What It Covers</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Cost Category">Hardware</td>
+                <td data-label="Timing">One-time, at installation</td>
+                <td data-label="What It Covers">Camera, DSP, control processor, displays</td>
+              </tr>
+              <tr>
+                <td data-label="Cost Category">AI feature licensing</td>
+                <td data-label="Timing">Often annual, per-room or per-org</td>
+                <td data-label="What It Covers">Cloud transcription, meeting intelligence, advanced analytics</td>
+              </tr>
+              <tr>
+                <td data-label="Cost Category">Platform subscription</td>
+                <td data-label="Timing">Monthly or annual</td>
+                <td data-label="What It Covers">Teams Rooms / Zoom Rooms / Google Meet certified hardware licensing</td>
+              </tr>
+              <tr>
+                <td data-label="Cost Category">Integration &amp; support</td>
+                <td data-label="Timing">One-time plus ongoing</td>
+                <td data-label="What It Covers">Commissioning, programming, and the maintenance relationship that keeps it all working</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Budgeting for the hardware alone and being surprised by the licensing line item a year later is the single most common AI-in-AV planning mistake we see. A responsible integrator prices the full picture up front.</p>
+      </section>
+
+      <section>
+        <h2>Five Steps to Take Right Now</h2>
+        <ol class="steps">
+          <li>
+            <strong>Audit what's already active</strong>
+            <p>Most organizations don't know which AI features are already running in their current room systems. This is a thirty-minute conversation, not a project.</p>
+          </li>
+          <li>
+            <strong>Categorize by the three-tier framework</strong>
+            <p>Sort what you find into Deploy Now, Deploy With Policy, and Watch. This alone resolves most of the ambiguity.</p>
+          </li>
+          <li>
+            <strong>Assign ownership</strong>
+            <p>Someone in IT, legal, or facilities should own the AI-in-AV decision. Right now, in most organizations, no one does.</p>
+          </li>
+          <li>
+            <strong>Build the policy before the next refresh</strong>
+            <p>If a room refresh is coming in the next 12–18 months, decide the governance posture before the new hardware arrives, not after.</p>
+          </li>
+          <li>
+            <strong>Choose an integrator who leads with this conversation</strong>
+            <p>Not every AV integrator is having this conversation with clients yet. The ones who are will save you from decisions you'd otherwise have to unwind later.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section>
+        <p>Innoface Systems has spent two decades integrating AV systems for organizations where the stakes of getting it right are non-negotiable: government facilities, federal agencies, and institutions operating under real compliance obligations. That background is exactly why we lead with this conversation instead of leading with a product list.</p>
+        <p>If you'd like to talk through what this means specifically for your environment , whether that's a government facility, university campus, corporate headquarters, healthcare space, or house of worship, reach out directly.</p>
+        <p class="signature"><strong>Ivan Collins</strong><br>President, Innoface Systems</p>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
