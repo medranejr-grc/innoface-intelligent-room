@@ -296,6 +296,44 @@
       font-size: 1.05rem;
     }
 
+    .cta {
+      margin: 44px 0 8px;
+      padding: 34px 32px;
+      text-align: center;
+      background: var(--accent-soft);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+    }
+
+    .cta p {
+      margin: 0 0 20px;
+      color: var(--accent-dark);
+      font-size: 1.1rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 14px 32px;
+      background: var(--accent);
+      color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 6px;
+      letter-spacing: .01em;
+    }
+
+    .cta-button:hover {
+      background: var(--accent-dark);
+    }
+
+    @media (max-width: 640px) {
+      .cta {
+        padding: 26px 20px;
+      }
+    }
+
     @media (max-width: 640px) {
       body {
         font-size: 16px;
@@ -452,6 +490,24 @@
 
       table {
         min-width: 0;
+      }
+
+      .cta {
+        border: 1px solid #999;
+        background: none;
+        padding: 16px;
+      }
+
+      .cta-button {
+        background: none;
+        color: #000;
+        padding: 0;
+        text-decoration: underline;
+      }
+
+      .cta-button::after {
+        content: " (cal.com/innofacesystems/30-minute-audio-visual-discovery-call)";
+        font-size: 9pt;
       }
     }
   </style>
@@ -626,7 +682,13 @@
 
       <section>
         <p>Innoface Systems has spent two decades integrating AV systems for organizations where the stakes of getting it right are non-negotiable: government facilities, federal agencies, and institutions operating under real compliance obligations. That background is exactly why we lead with this conversation instead of leading with a product list.</p>
-        <p>If you'd like to talk through what this means specifically for your environment, whether that's a government facility, university campus, corporate headquarters, healthcare space, or house of worship, reach out directly.</p>
+        <p>If you'd like to talk through what this means specifically for your environment, whether that's a government facility, university campus, corporate headquarters, healthcare space, or house of worship, we're glad to have that conversation.</p>
+
+        <div class="cta">
+          <p>Talk through what this means for your environment. Thirty minutes, no obligation.</p>
+          <a class="cta-button" href="https://cal.com/innofacesystems/30-minute-audio-visual-discovery-call">Book a Discovery Call</a>
+        </div>
+
         <p class="signature"><strong>Ivan Collins</strong>President, Innoface Systems</p>
       </section>
     </main>
